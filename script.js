@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let metin = "--- SİSTEME EKLENMESİ ÖNERİLEN OYUNCULAR (VAR LİSTESİ) ---\n";
         metin += "NOT: Köşeli parantez içindeki tarihler, itirazın yapıldığı günü gösterir.\n\n";
         
-        // Listeyi şık bir şekilde formatla
         varListesi.forEach(kayit => {
             if (typeof kayit === "string") {
                 metin += `[Tarihsiz Kayıt] - ${kayit.toUpperCase()}\n`;
@@ -98,6 +97,73 @@ document.addEventListener("DOMContentLoaded", () => {
             guvenlikSayaci++;
         }
         return Array.from(secilenler);
+    }
+
+    // ==========================================
+    // AKILLI VE ESNEK METİN TEMİZLEME & EŞLEŞTİRME
+    // ==========================================
+    function metniTemizle(metin) {
+        if (!metin) return "";
+        return metin
+            .toLowerCase()
+            .replace(/ı/g, 'i')
+            .replace(/ğ/g, 'g')
+            .replace(/ü/g, 'u')
+            .replace(/ş/g, 's')
+            .replace(/ö/g, 'o')
+            .replace(/ç/g, 'c')
+            .replace(/z/g, 's') // 'z' ve 's' harf esnekliği (luiz <-> luis için)
+            .replace(/[^a-z0-9\s]/g, "")
+            .trim();
+    }
+
+    function oyuncuBul(girilenIsim, aktifTurTakimlari) {
+        let temizGirdi = metniTemizle(girilenIsim);
+        if (!temizGirdi) return null;
+
+        let girilenKelimeler = temizGirdi.split(/\s+/);
+
+        // 1. Aşama: Tam veya birebir esnek eşleşme kontrolü
+        let bulunan = futbolcularVerisi.find(o => {
+            let temizVeriIsmi = metniTemizle(o.isim);
+            let veriKelimeleri = temizVeriIsmi.split(/\s+/);
+            
+            // Eğer girilen kelimelerin hepsi veritabanındaki ismin içinde geçiyorsa (Örn: "suarez" veya "luis suarez")
+            let kelimelerUyusuyorMu = girilenKelimeler.every(gk => 
+                veriKelimeleri.some(vk => vk.includes(gk) || gk.includes(vk))
+            );
+
+            return temizVeriIsmi === temizGirdi || kelimelerUyusuyorMu;
+        });
+
+        if (bulunan) return bulunan;
+
+        // 2. Aşama (Joker / Akıllı Filtre): Aynı soyadına veya ada sahip birden fazla oyuncu varsa, 
+        // o anki turun 6 takımıyla EN ÇOK örtüşen (doğru) oyuncuyu akıllıca seçer.
+        let olasiAdaylar = futbolcularVerisi.filter(o => {
+            let temizVeriIsmi = metniTemizle(o.isim);
+            return girilenKelimeler.some(gk => temizVeriIsmi.includes(gk));
+        });
+
+        if (olasiAdaylar.length > 0) {
+            // Ekrandaki takımlarla en çok eşleşeni bul
+            let enIyiEslesme = olasiAdaylar.reduce((enIyi, aday) => {
+                let adaySkor = aktifTurTakimlari.filter(secenek => 
+                    aday.takimlar.includes(secenek) || aday.uyruk === secenek
+                ).length;
+
+                let enIyiSkor = enIyi ? aktifTurTakimlari.filter(secenek => 
+                    enIyi.takimlar.includes(secenek) || enIyi.uyruk === secenek
+                ).length : -1;
+
+                return adaySkor > enIyiSkor ? aday : enIyi;
+            }, null);
+
+            if (enIyiEslesme) return enIyiEslesme;
+            return olasiAdaylar[0];
+        }
+
+        return null;
     }
 
     // ==========================================
@@ -221,6 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function tahminKontrolEt(tahminEdilenIsim, panelNo, aiTetikledi = false) {
         if (!tahminEdilenIsim.trim() || aktifTurIndex !== oynananTurlar.length - 1) return;
 
+        let tur = oynananTurlar[aktifTurIndex];
         const kutu = document.getElementById(`sonuc${panelNo}-kutusu`);
         kutu.classList.remove("gizli");
         
@@ -238,15 +305,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const bilgiMetin = document.getElementById(`sonuc${panelNo}-bilgi`);
         const itirazButonu = document.getElementById(`itiraz${panelNo}-butonu`);
 
-        // YENİ: İTİRAZA BASILINCA MODALI AÇMA
         itirazButonu.onclick = () => {
             aktifItirazOyuncu = tahminEdilenIsim;
             aktifItirazPanelNo = panelNo;
             varOyuncuAdiMetni.innerText = tahminEdilenIsim.toUpperCase();
             
-            // O an ekranda olan 6 seçeneği çekip checkboxları oluştur
-            let ekrandakiSecenekler = oynananTurlar[aktifTurIndex].takimlar;
-            varSeceneklerAlani.innerHTML = ""; // Temizle
+            let ekrandakiSecenekler = tur.takimlar;
+            varSeceneklerAlani.innerHTML = "";
             
             ekrandakiSecenekler.forEach(secenek => {
                 let div = document.createElement("div");
@@ -261,8 +326,8 @@ document.addEventListener("DOMContentLoaded", () => {
             varModal.classList.remove("gizli");
         };
 
-        const bulunanOyuncu = futbolcularVerisi.find(o => o.isim.toLowerCase() === tahminEdilenIsim.toLowerCase());
-        let tur = oynananTurlar[aktifTurIndex];
+        // AKILLI ARAMA FONKSİYONUMUZU ÇAĞIRIYORUZ
+        const bulunanOyuncu = oyuncuBul(tahminEdilenIsim, tur.takimlar);
         tur["tahmin" + panelNo] = tahminEdilenIsim.toUpperCase(); 
 
         if (bulunanOyuncu) {
@@ -302,7 +367,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // YENİ: MODAL BUTONLARI İŞLEVLERİ (Gönder ve İptal)
     varIptalBtn.addEventListener("click", () => {
         varModal.classList.add("gizli");
     });
@@ -334,7 +398,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         varModal.classList.add("gizli");
     });
-
 
     function yapayZekaHamleYap(turIndex) {
         if(turIndex !== aktifTurIndex) return; 
