@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ortak Oyuncu Bul</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. ANA MENÜ -->
+    <div id="ana-menu" class="oyun-konteyner">
+        <div class="baslik-alani">
+            <h1 class="neon-text">Ortak Oyuncu Bulma Oyunu</h1>
+            <p>Futbol zekanı konuştur, rakiplerini alt et!</p>
+        </div>
+        
+        <div class="oyuncu-giris-alani">
+            <div class="oyuncu-kutu">
+                <label>1. OYUNCU (BEN)</label>
+                <div class="input-grup">
+                    <span>Ben:</span>
+                    <input type="text" id="oyuncu1-isim" placeholder="Senin Adın (Örn: Rojhat)">
+                </div>
+            </div>
+            <div class="oyuncu-kutu">
+                <label>2. OYUNCU (RAKİP / YAPAY ZEKA)</label>
+                <div class="input-grup">
+                    <span>Rakip:</span>
+                    <input type="text" id="oyuncu2-isim" placeholder="Arkadaşın veya Yapay Zeka">
+                </div>
+            </div>
+        </div>
+
+        <div class="mod-secim-alani">
+            <div class="secim-kutusu">
+                <label>Oyun Modu (6 Tur İçin)</label>
+                <select id="oyun-modu" class="neon-select">
+                    <option value="arkadas">Arkadaşla Oyna</option>
+                    <option value="yapay-zeka">Yapay Zekaya Karşı</option>
+                </select>
+            </div>
+            <div class="secim-kutusu gizli" id="zorluk-secimi">
+                <label>Yapay Zeka Zorluğu</label>
+                <select id="zorluk-modu" class="neon-select">
+                    <option value="kolay">Kolay</option>
+                    <option value="orta">Orta</option>
+                    <option value="zor">Zor</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mod-secim-alani" style="margin-top: -10px;">
+            <div class="secim-kutusu" style="flex: 100%;">
+                <label>Oyun Kategorisi (6 Tur İçin)</label>
+                <select id="kategori-secimi" class="neon-select">
+                    <option value="karma">Sadece Takımlar (Dünya Karması)</option>
+                    <option value="ulkeler">Takımlar ve Ülkeler (Karma)</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="basla-butonu" class="neon-buton" style="margin-bottom: 15px;">6 Turluk Klasik Maça Başla ➔</button>
+        <button id="hizli-mod-gecis" class="neon-buton-alt">⚡ 3-2-1 Hızlı Moda Geç (Sosyal Medya Modu)</button>
+        
+        <!-- YENİ: GİZLİ ADMİN BUTONU (Kimsenin dikkatini çekmeyecek hayalet tasarım) -->
+        <button id="var-indir-butonu" style="background: transparent; border: none; color: #334155; padding: 10px; width: 100%; margin-top: 15px; cursor: pointer; font-size: 11px; font-weight: normal; transition: 0.3s; opacity: 0.5;">[admin] itiraz kayıtları</button>
+    </div>
+
+    <!-- 2. KLASİK OYUN EKRANI (6 TUR) -->
+    <div id="oyun-ekrani" class="oyun-konteyner gizli">
+        <div class="ust-bilgi" style="position: relative;">
+            <button id="klasik-menuye-don" class="itiraz-butonu" style="position: absolute; left: 0; top: 0; padding: 10px 15px;">⬅ Ana Menü</button>
+            
+            <div class="tur-gosterge">TUR <span id="tur-sayaci">1</span> / 6</div>
+            <h2 class="neon-text">Ortak Oyuncuları Bulun</h2>
+            
+            <div style="position: absolute; right: 0; top: 0; display: flex; gap: 10px;">
+                <button id="onceki-tur-butonu" class="mavi-buton gizli" style="padding: 10px 15px; background-color: #475569;">⬅ Önceki</button>
+                <button id="tur-bitir-butonu" class="mavi-buton" style="padding: 10px 20px;">Sıradaki Tur ➔</button>
+            </div>
+        </div>
+
+        <div class="takimlar-satiri" id="takimlar-alani">
+            <div class="takim-etiketi">Takım 1</div>
+            <div class="takim-etiketi">Takım 2</div>
+            <div class="takim-etiketi">Takım 3</div>
+            <div class="takim-etiketi">Takım 4</div>
+            <div class="takim-etiketi">Takım 5</div>
+            <div class="takim-etiketi">Takım 6</div>
+        </div>
+
+        <div class="paneller-alani">
+            <div class="oyuncu-paneli neon-border-blue">
+                <div class="panel-baslik">
+                    <span class="isim" id="panel1-isim">Ben</span>
+                    <span class="skor">Skor: <span id="skor1">0</span></span>
+                </div>
+                <div class="tahmin-alani">
+                    <input type="text" placeholder="Oyuncu adı yazın..." class="koyu-input" id="input1">
+                    <button class="mavi-buton btn-sorgula">Sorgula</button>
+                </div>
+                <div id="sonuc1-kutusu" class="sonuc-kutusu gizli">
+                    <div class="sonuc-baslik-alani">
+                        <h4 id="sonuc1-isim">Oyuncu Adı</h4>
+                        <button id="itiraz1-butonu" class="itiraz-butonu gizli">İTİRAZ ET (VAR)</button>
+                    </div>
+                    <p id="sonuc1-takimlar" class="oyuncu-takimlar">Oynadığı Takımlar: -</p>
+                    <p id="sonuc1-bilgi" class="oyuncu-bilgi">Biyografi bilgisi...</p>
+                </div>
+            </div>
+
+            <div class="oyuncu-paneli neon-border-purple">
+                <div class="panel-baslik">
+                    <span class="isim" id="panel2-isim">Arkadaşım</span>
+                    <span class="skor">Skor: <span id="skor2">0</span></span>
+                </div>
+                <div class="tahmin-alani">
+                    <input type="text" placeholder="Oyuncu adı yazın..." class="koyu-input" id="input2">
+                    <button class="mavi-buton btn-sorgula">Sorgula</button>
+                </div>
+                <div id="sonuc2-kutusu" class="sonuc-kutusu gizli">
+                    <div class="sonuc-baslik-alani">
+                        <h4 id="sonuc2-isim">Oyuncu Adı</h4>
+                        <button id="itiraz2-butonu" class="itiraz-butonu gizli">İTİRAZ ET (VAR)</button>
+                    </div>
+                    <p id="sonuc2-takimlar" class="oyuncu-takimlar">Oynadığı Takımlar: -</p>
+                    <p id="sonuc2-bilgi" class="oyuncu-bilgi">Biyografi bilgisi...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. GÖRKEMLİ OYUN SONU EKRANI -->
+    <div id="oyun-sonu-ekrani" class="oyun-konteyner gizli" style="text-align: center;">
+        <h1 id="kazanan-baslik" class="neon-text" style="font-size: 36px; -webkit-text-fill-color: white; background: #3b82f6; padding: 15px; border-radius: 10px;">🏆 SONUÇ HESAPLANIYOR</h1>
+        <p id="kazanan-alt-metin" style="color: #94a3b8; font-size: 16px; margin-bottom: 30px;">...</p>
+        
+        <div style="display: flex; justify-content: space-around; margin-bottom: 30px; background: #0f172a; padding: 20px; border-radius: 15px; border: 1px solid #1e293b;">
+            <div>
+                <h3 id="sonuc-isim1" style="color: #94a3b8; margin-top: 0;">Ben</h3>
+                <div class="dev-skor" id="sonuc-skor1">0</div>
+            </div>
+            <div>
+                <h3 id="sonuc-isim2" style="color: #94a3b8; margin-top: 0;">Rakip</h3>
+                <div class="dev-skor" id="sonuc-skor2">0</div>
+            </div>
+        </div>
+
+        <h3 style="text-align: left; color: #818cf8; font-size: 14px; text-transform: uppercase;">Geçmiş Tur Özetleri</h3>
+        <div id="tur-ozetleri" style="text-align: left; max-height: 200px; overflow-y: auto; background: #0f172a; padding: 15px; border-radius: 10px; border: 1px solid #1e293b; margin-bottom: 20px;">
+        </div>
+
+        <button id="yeni-mac-butonu" class="yesil-buton" style="width: 100%; padding: 15px; font-size: 18px;">Yeni Maç Oyna ➔</button>
+    </div>
+
+    <!-- 4. 3-2-1 HIZLI MAÇ EKRANI -->
+    <div id="uc-iki-bir-ekrani" class="oyun-konteyner gizli" style="text-align: center;">
+        <h2 class="neon-text" style="font-size: 32px; margin-bottom: 20px;">⚡ 3-2-1 Meydan Okuması</h2>
+        <div class="secim-kutusu" style="margin-bottom: 30px;">
+            <label>Eşleşme Türünü Seçin</label>
+            <select id="hizli-kategori" class="neon-select">
+                <option value="takim-takim">Takım & Takım (Örn: Real Madrid - Arsenal)</option>
+                <option value="takim-ulke">Takım & Ülke (Örn: Bayern Münih - Brezilya)</option>
+                <option value="karma">Karma Sürpriz (Sistem Rastgele Seçer)</option>
+            </select>
+        </div>
+        <div id="sayac-alani" class="dev-sayac gizli">3</div>
+        <div id="ikili-kart-alani" class="ikili-kart-satiri gizli">
+            <div class="takim-etiketi dev-kart" id="kart-1">Takım 1</div>
+            <div class="takim-etiketi dev-kart" id="kart-2">Takım 2</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 40px; gap: 20px;">
+            <button id="onceki-butonu" class="mavi-buton gizli" style="flex: 1; padding: 15px; font-size: 18px;">⬅ Önceki</button>
+            <button id="siradaki-butonu" class="yesil-buton" style="flex: 1; padding: 15px; font-size: 18px;">Sıradaki ➔</button>
+        </div>
+        <button id="menuye-don-butonu" class="itiraz-butonu" style="margin-top: 20px; width: 100%; padding: 10px;">Ana Menüye Dön</button>
+    </div>
+
+    <!-- YENİ VAR SEÇİM MODALI (GİZLİ) -->
+    <div id="var-modal" class="modal gizli">
+        <div class="modal-icerik">
+            <h3 class="neon-text" style="font-size: 20px; text-align: center; margin-top:0;">İtiraz (VAR) Seçimi</h3>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 20px; text-align: center;">
+                <strong id="var-oyuncu-adi" style="color: white; font-size: 16px;"></strong> adlı oyuncunun ekrandaki takımlardan/ülkelerden <strong>hangilerinde</strong> oynadığını düşünüyorsun? Lütfen seç.
+            </p>
+            <div id="var-secenekler-alani" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                <!-- JS ile buraya checkboxlar gelecek -->
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button id="var-iptal-btn" class="itiraz-butonu" style="flex: 1; padding: 12px; font-size: 14px;">İptal</button>
+                <button id="var-gonder-btn" class="yesil-buton" style="flex: 2; padding: 12px; font-size: 14px;">Kaydet ve Gönder</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
