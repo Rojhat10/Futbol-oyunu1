@@ -28,7 +28,7 @@
   {"isim": "Luka Modric", "uyruk": "Hırvatistan", "takimlar": ["Dinamo Zagreb", "Zrinjski", "Inter Zapresic", "Tottenham", "Real Madrid"]},
   {"isim": "Toni Kroos", "uyruk": "Almanya", "takimlar": ["Bayern Münih", "Bayer Leverkusen", "Real Madrid"]},
   {"isim": "Sergio Ramos", "uyruk": "İspanya", "takimlar": ["Sevilla", "Real Madrid", "PSG"]},
-  {"isim": "Pepe", "uyruk": "Portekiz", "takimlar": ["Maritimo", "Porto", "Real Madrid", "Beşiktaş"]}
+  {"isim": "Pepe", "uyruk": "Portekiz", "takimlar": ["Maritimo", "Porto", "Real Madrid", "Beşiktaş"]},
   {"isim": "Kylian Mbappe", "uyruk": "Fransa", "takimlar": ["Monaco", "PSG", "Real Madrid"]},
   {"isim": "Erling Haaland", "uyruk": "Norveç", "takimlar": ["Bryne", "Molde", "RB Salzburg", "Borussia Dortmund", "Manchester City"]},
   {"isim": "Neymar", "uyruk": "Brezilya", "takimlar": ["Santos", "Barcelona", "PSG", "Al Hilal"]},
@@ -78,7 +78,7 @@
   {"isim": "Nemanja Vidic", "uyruk": "Sırbistan", "takimlar": ["Kızılyıldız", "Spartak Moskova", "Manchester United", "Inter"]},
   {"isim": "Rio Ferdinand", "uyruk": "İngiltere", "takimlar": ["West Ham United", "Bournemouth", "Leeds United", "Manchester United", "QPR"]},
   {"isim": "Petr Cech", "uyruk": "Çekya", "takimlar": ["Chmel Blsany", "Sparta Prag", "Rennes", "Chelsea", "Arsenal"]},
-  {"isim": "Michael Ballack", "uyruk": "Almanya", "takimlar": ["Chemnitzer FC", "Kaiserslautern", "Bayer Leverkusen", "Bayern Münih", "Chelsea"]}
+  {"isim": "Michael Ballack", "uyruk": "Almanya", "takimlar": ["Chemnitzer FC", "Kaiserslautern", "Bayer Leverkusen", "Bayern Münih", "Chelsea"]},
   {"isim": "Antoine Griezmann", "uyruk": "Fransa", "takimlar": ["Real Sociedad", "Atletico Madrid", "Barcelona"]},
   {"isim": "N'Golo Kante", "uyruk": "Fransa", "takimlar": ["Boulogne", "Caen", "Leicester City", "Chelsea", "Al Ittihad"]},
   {"isim": "Paul Pogba", "uyruk": "Fransa", "takimlar": ["Manchester United", "Juventus"]},
@@ -178,7 +178,7 @@
   {"isim": "Mikel Oyarzabal", "uyruk": "İspanya", "takimlar": ["Real Sociedad"]},
   {"isim": "Jesus Navas", "uyruk": "İspanya", "takimlar": ["Sevilla", "Manchester City"]},
   {"isim": "David De Gea", "uyruk": "İspanya", "takimlar": ["Atletico Madrid", "Manchester United", "Fiorentina"]},
-  {"isim": "Jan Oblak", "uyruk": "Slovenya", "takimlar": ["Olimpija Ljubljana", "Benfica", "Uniao Leiria", "Rio Ave", "Atletico Madrid"]}
+  {"isim": "Jan Oblak", "uyruk": "Slovenya", "takimlar": ["Olimpija Ljubljana", "Benfica", "Uniao Leiria", "Rio Ave", "Atletico Madrid"]},
   {"isim": "Jamal Musiala", "uyruk": "Almanya", "takimlar": ["Bayern Münih"]},
   {"isim": "Florian Wirtz", "uyruk": "Almanya", "takimlar": ["Köln", "Bayer Leverkusen"]},
   {"isim": "Xavi Simons", "uyruk": "Hollanda", "takimlar": ["PSG", "PSV", "RB Leipzig"]},
@@ -278,7 +278,7 @@
   {"isim": "Lamine Yamal", "uyruk": "İspanya", "takimlar": ["Barcelona"]},
   {"isim": "Pedri", "uyruk": "İspanya", "takimlar": ["Las Palmas", "Barcelona"]},
   {"isim": "Gavi", "uyruk": "İspanya", "takimlar": ["Barcelona"]},
-  {"isim": "Nico Williams", "uyruk": "İspanya", "takimlar": ["Athletic Bilbao"]}
+  {"isim": "Nico Williams", "uyruk": "İspanya", "takimlar": ["Athletic Bilbao"]},
   {"isim": "Marc-Andre ter Stegen", "uyruk": "Almanya", "takimlar": ["Borussia Mönchengladbach", "Barcelona"]},
   {"isim": "Ronald Araujo", "uyruk": "Uruguay", "takimlar": ["Boston River", "Barcelona"]},
   {"isim": "Andreas Christensen", "uyruk": "Danimarka", "takimlar": ["Chelsea", "Borussia Mönchengladbach", "Barcelona"]},
@@ -378,7 +378,7 @@
   {"isim": "Rüştü Reçber", "uyruk": "Türkiye", "takimlar": ["Antalyaspor", "Fenerbahçe", "Barcelona", "Beşiktaş"]},
   {"isim": "Nuri Şahin", "uyruk": "Türkiye", "takimlar": ["Borussia Dortmund", "Feyenoord", "Real Madrid", "Liverpool", "Werder Bremen", "Antalyaspor"]},
   {"isim": "Hamit Altıntop", "uyruk": "Türkiye", "takimlar": ["Schalke 04", "Bayern Münih", "Real Madrid", "Galatasaray", "Darmstadt 98"]},
-  {"isim": "Gökhan Gönül", "uyruk": "Türkiye", "takimlar": ["Gençlerbirliği Oftaş", "Fenerbahçe", "Beşiktaş", "Çaykur Rizespor"]}
+  {"isim": "Gökhan Gönül", "uyruk": "Türkiye", "takimlar": ["Gençlerbirliği Oftaş", "Fenerbahçe", "Beşiktaş", "Çaykur Rizespor"]},
   {"isim": "David Seaman", "uyruk": "İngiltere", "takimlar": ["Peterborough United", "Birmingham City", "QPR", "Arsenal", "Manchester City"]},
   {"isim": "Edwin van der Sar", "uyruk": "Hollanda", "takimlar": ["Ajax", "Juventus", "Fulham", "Manchester United"]},
   {"isim": "Peter Schmeichel", "uyruk": "Danimarka", "takimlar": ["Gladsaxe", "Hvidovre", "Brondby", "Manchester United", "Sporting", "Aston Villa", "Manchester City"]},
@@ -478,7 +478,7 @@
   {"isim": "Gael Clichy", "uyruk": "Fransa", "takimlar": ["Cannes", "Arsenal", "Manchester City", "Başakşehir", "Servette"]},
   {"isim": "Bacary Sagna", "uyruk": "Fransa", "takimlar": ["Auxerre", "Arsenal", "Manchester City", "Benevento", "Montreal Impact"]},
   {"isim": "Laurent Koscielny", "uyruk": "Fransa", "takimlar": ["Guingamp", "Tours", "Lorient", "Arsenal", "Bordeaux"]},
-  {"isim": "Mathieu Debuchy", "uyruk": "Fransa", "takimlar": ["Lille", "Newcastle United", "Arsenal", "Bordeaux", "Saint-Etienne", "Valenciennes"]}
+  {"isim": "Mathieu Debuchy", "uyruk": "Fransa", "takimlar": ["Lille", "Newcastle United", "Arsenal", "Bordeaux", "Saint-Etienne", "Valenciennes"]},
   {"isim": "Emre Can", "uyruk": "Almanya", "takimlar": ["Bayern Münih", "Bayer Leverkusen", "Liverpool", "Juventus", "Borussia Dortmund"]},
   {"isim": "Alvaro Morata", "uyruk": "İspanya", "takimlar": ["Real Madrid", "Juventus", "Chelsea", "Atletico Madrid", "AC Milan"]},
   {"isim": "Michy Batshuayi", "uyruk": "Belçika", "takimlar": ["Standard Liege", "Marsilya", "Chelsea", "Borussia Dortmund", "Valencia", "Crystal Palace", "Beşiktaş", "Fenerbahçe", "Galatasaray"]},
@@ -578,7 +578,7 @@
   {"isim": "Joao Moutinho", "uyruk": "Portekiz", "takimlar": ["Sporting", "Porto", "Monaco", "Wolverhampton", "Braga"]},
   {"isim": "Ruben Neves", "uyruk": "Portekiz", "takimlar": ["Porto", "Wolverhampton", "Al Hilal"]},
   {"isim": "Raul Jimenez", "uyruk": "Meksika", "takimlar": ["America", "Atletico Madrid", "Benfica", "Wolverhampton", "Fulham"]},
-  {"isim": "Adama Traore", "uyruk": "İspanya", "takimlar": ["Barcelona", "Aston Villa", "Middlesbrough", "Wolverhampton", "Fulham"]}
+  {"isim": "Adama Traore", "uyruk": "İspanya", "takimlar": ["Barcelona", "Aston Villa", "Middlesbrough", "Wolverhampton", "Fulham"]},
   {"isim": "Philippe Coutinho", "uyruk": "Brezilya", "takimlar": ["Vasco da Gama", "Inter", "Espanyol", "Liverpool", "Barcelona", "Bayern Münih", "Aston Villa", "Al-Duhail"]},
   {"isim": "Fedor Smolov", "uyruk": "Rusya", "takimlar": ["Dynamo Moskova", "Feyenoord", "Anzhi", "Ural", "Krasnodar", "Lokomotiv Moskova", "Celta Vigo"]},
   {"isim": "Andre Schürrle", "uyruk": "Almanya", "takimlar": ["Mainz 05", "Bayer Leverkusen", "Chelsea", "Wolfsburg", "Borussia Dortmund", "Fulham", "Spartak Moskova"]},
@@ -678,7 +678,7 @@
   {"isim": "Emmanuel Emenike", "uyruk": "Nijerya", "takimlar": ["Karabükspor", "Fenerbahçe", "Spartak Moskova", "Al Ain", "West Ham United", "Olympiakos", "Las Palmas"]},
   {"isim": "Diego Capel", "uyruk": "İspanya", "takimlar": ["Sevilla", "Sporting", "Genoa", "Anderlecht", "Extremadura", "Birkirkara"]},
   {"isim": "Mamadou Niang", "uyruk": "Senegal", "takimlar": ["Troyes", "Metz", "Strasbourg", "Marsilya", "Fenerbahçe", "Al Sadd", "Beşiktaş", "Arles-Avignon"]},
-  {"isim": "Theofanis Gekas", "uyruk": "Yunanistan", "takimlar": ["Kallithea", "Panathinaikos", "Bochum", "Bayer Leverkusen", "Portsmouth", "Hertha Berlin", "Eintracht Frankfurt", "Samsunspor", "Levante", "Akhisar Belediyespor", "Konyaspor", "Sion", "Sivasspor"]}
+  {"isim": "Theofanis Gekas", "uyruk": "Yunanistan", "takimlar": ["Kallithea", "Panathinaikos", "Bochum", "Bayer Leverkusen", "Portsmouth", "Hertha Berlin", "Eintracht Frankfurt", "Samsunspor", "Levante", "Akhisar Belediyespor", "Konyaspor", "Sion", "Sivasspor"]},
   {"isim": "Lucas Biglia", "uyruk": "Arjantin", "takimlar": ["Argentinos Juniors", "Independiente", "Anderlecht", "Lazio", "AC Milan", "Fatih Karagümrük", "Başakşehir"]},
   {"isim": "Fabio Borini", "uyruk": "İtalya", "takimlar": ["Chelsea", "Swansea City", "Parma", "Roma", "Liverpool", "Sunderland", "AC Milan", "Hellas Verona", "Fatih Karagümrük", "Sampdoria"]},
   {"isim": "Dimitrios Pelkas", "uyruk": "Yunanistan", "takimlar": ["PAOK", "Apollon Kalamarias", "Vitoria Setubal", "Fenerbahçe", "Hull City", "Başakşehir"]},
@@ -778,7 +778,7 @@
   {"isim": "Yusuf Sari", "uyruk": "Türkiye", "takimlar": ["Marsilya", "Clermont", "Trabzonspor", "Çaykur Rizespor", "Adana Demirspor"]},
   {"isim": "Yunus Akgün", "uyruk": "Türkiye", "takimlar": ["Galatasaray", "Adana Demirspor", "Leicester City"]},
   {"isim": "Taylan Antalyalı", "uyruk": "Türkiye", "takimlar": ["Bucaspor", "Gençlerbirliği", "Kayseri Erciyesspor", "Hacettepe", "BB Erzurumspor", "Galatasaray", "Ankaragücü", "Samsunspor", "Bodrum FK"]},
-  {"isim": "Berkan Kutlu", "uyruk": "Türkiye", "takimlar": ["Sion", "Alanyaspor", "Galatasaray", "Genoa"]}
+  {"isim": "Berkan Kutlu", "uyruk": "Türkiye", "takimlar": ["Sion", "Alanyaspor", "Galatasaray", "Genoa"]},
   {"isim": "Sergen Yalçın", "uyruk": "Türkiye", "takimlar": ["Beşiktaş", "İstanbulspor", "Siirt Jetpa", "Fenerbahçe", "Galatasaray", "Trabzonspor", "Etimesgut Şekerspor", "Eskişehirspor"]},
   {"isim": "Karim Benzema", "uyruk": "Fransa", "takimlar": ["Lyon", "Real Madrid", "Al Ittihad"]},
   {"isim": "Eden Hazard", "uyruk": "Belçika", "takimlar": ["Lille", "Chelsea", "Real Madrid"]},
@@ -879,7 +879,7 @@
   {"isim": "Julian Alvarez", "uyruk": "Arjantin", "takimlar": ["River Plate", "Manchester City", "Atletico Madrid"]},
   {"isim": "Enzo Fernandez", "uyruk": "Arjantin", "takimlar": ["River Plate", "Defensa y Justicia", "Benfica", "Chelsea"]},
   {"isim": "Alexis Mac Allister", "uyruk": "Arjantin", "takimlar": ["Argentinos Juniors", "Boca Juniors", "Brighton", "Liverpool"]},
-  {"isim": "Cole Palmer", "uyruk": "İngiltere", "takimlar": ["Manchester City", "Chelsea"]}
+  {"isim": "Cole Palmer", "uyruk": "İngiltere", "takimlar": ["Manchester City", "Chelsea"]},
   {"isim": "Lukas Hradecky", "uyruk": "Finlandiya", "takimlar": ["Esbjerg", "Brondby", "Eintracht Frankfurt", "Bayer Leverkusen"]},
   {"isim": "Jonathan Tah", "uyruk": "Almanya", "takimlar": ["Hamburg", "Fortuna Düsseldorf", "Bayer Leverkusen"]},
   {"isim": "Piero Hincapie", "uyruk": "Ekvador", "takimlar": ["Independiente Valle", "Talleres", "Bayer Leverkusen"]},
