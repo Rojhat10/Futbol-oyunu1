@@ -100,53 +100,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // AKILLI VE ESNEK METİN TEMİZLEME & EŞLEŞTİRME
+    // AKILLI VE KESİN METİN EŞLEŞTİRME (YENİ)
     // ==========================================
+    
+    // 1. Sadece Bitişik Arama İçin (Örn: Emrecan == Emre Can)
     function metniTemizle(metin) {
         if (!metin) return "";
-        return metin
-            .toLowerCase()
-            .replace(/ı/g, 'i')
-            .replace(/ğ/g, 'g')
-            .replace(/ü/g, 'u')
-            .replace(/ş/g, 's')
-            .replace(/ö/g, 'o')
-            .replace(/ç/g, 'c')
-            .replace(/z/g, 's') // 'z' ve 's' harf esnekliği (luiz <-> luis için)
-            .replace(/[^a-z0-9\s]/g, "")
-            .trim();
+        let temiz = metin.toLowerCase()
+            .replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ü/g, 'u')
+            .replace(/ş/g, 's').replace(/ö/g, 'o').replace(/ç/g, 'c')
+            .replace(/z/g, 's') // Luiz = Luis
+            .replace(/[^a-z0-9]/g, ""); // Boşlukları ve özel harfleri tamamen siler
+        
+        // Çift harfleri teke düşür (Haland == Haaland, ibrahimmovic == ibrahimovic)
+        return temiz.replace(/(.)\1+/g, '$1');
+    }
+
+    // 2. Kelime Kelime Arama İçin (Örn: De Bruyne veya Suarez)
+    function kelimeKelimeTemizle(metin) {
+        if (!metin) return [];
+        return metin.toLowerCase()
+            .replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ü/g, 'u')
+            .replace(/ş/g, 's').replace(/ö/g, 'o').replace(/ç/g, 'c')
+            .replace(/z/g, 's') // Luiz = Luis
+            .replace(/[^a-z0-9\s]/g, "") // Boşluklar kalır ki kelimelere bölebilelim
+            .trim()
+            .split(/\s+/) // Boşluklardan bölüp diziye çevirir
+            .map(k => k.replace(/(.)\1+/g, '$1')); // Her kelimede çift harfleri teke düşür
     }
 
     function oyuncuBul(girilenIsim, aktifTurTakimlari) {
-        let temizGirdi = metniTemizle(girilenIsim);
-        if (!temizGirdi) return null;
-
-        let girilenKelimeler = temizGirdi.split(/\s+/);
-
-        // 1. Aşama: Tam veya birebir esnek eşleşme kontrolü
-        let bulunan = futbolcularVerisi.find(o => {
-            let temizVeriIsmi = metniTemizle(o.isim);
-            let veriKelimeleri = temizVeriIsmi.split(/\s+/);
-            
-            // Eğer girilen kelimelerin hepsi veritabanındaki ismin içinde geçiyorsa (Örn: "suarez" veya "luis suarez")
-            let kelimelerUyusuyorMu = girilenKelimeler.every(gk => 
-                veriKelimeleri.some(vk => vk.includes(gk) || gk.includes(vk))
-            );
-
-            return temizVeriIsmi === temizGirdi || kelimelerUyusuyorMu;
-        });
-
-        if (bulunan) return bulunan;
-
-        // 2. Aşama (Joker / Akıllı Filtre): Aynı soyadına veya ada sahip birden fazla oyuncu varsa, 
-        // o anki turun 6 takımıyla EN ÇOK örtüşen (doğru) oyuncuyu akıllıca seçer.
+        if (!girilenIsim) return null;
+        
+        let tamGirdi = metniTemizle(girilenIsim); // Boşluksuz hali
+        let girdiKelimeler = kelimeKelimeTemizle(girilenIsim); // Kelime kelime ayrılmış hali
+        
         let olasiAdaylar = futbolcularVerisi.filter(o => {
-            let temizVeriIsmi = metniTemizle(o.isim);
-            return girilenKelimeler.some(gk => temizVeriIsmi.includes(gk));
+            let dbTam = metniTemizle(o.isim);
+            let dbKelimeler = kelimeKelimeTemizle(o.isim);
+            
+            // 1. Durum: İsim bitişik veya ayrı birebir aynı mı? (Emrecan === Emrecan)
+            if (dbTam === tamGirdi) return true;
+            
+            // 2. Durum: Sadece soyisim veya isim mi girilmiş? 
+            // Girilen tüm kelimeler, veritabanındaki ismin BİREBİR KELİMELERİ içinde geçiyorsa doğru sayar.
+            // Örn: "Sterling" kelimesi "Raheem Sterling" içinde var. (Doğru)
+            // Örn: "Erling" kelimesi "Raheem Sterling" içinde YOKTUR. (Saçma eşleşme engellendi)
+            let butunKelimelerUyusuyorMu = girdiKelimeler.length > 0 && girdiKelimeler.every(gk => dbKelimeler.includes(gk));
+            
+            if (butunKelimelerUyusuyorMu) return true;
+            
+            return false; 
         });
 
+        // 3. Durum: Aynı isimden (örn: Suarez) birden fazla varsa, ekrandaki takımlara uyanı seç!
         if (olasiAdaylar.length > 0) {
-            // Ekrandaki takımlarla en çok eşleşeni bul
             let enIyiEslesme = olasiAdaylar.reduce((enIyi, aday) => {
                 let adaySkor = aktifTurTakimlari.filter(secenek => 
                     aday.takimlar.includes(secenek) || aday.uyruk === secenek
@@ -159,8 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return adaySkor > enIyiSkor ? aday : enIyi;
             }, null);
 
-            if (enIyiEslesme) return enIyiEslesme;
-            return olasiAdaylar[0];
+            return enIyiEslesme || olasiAdaylar[0];
         }
 
         return null;
